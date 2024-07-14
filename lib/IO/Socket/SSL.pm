@@ -13,7 +13,7 @@
 
 package IO::Socket::SSL;
 
-our $VERSION = '2.087';
+our $VERSION = '2.088';
 
 use IO::Socket;
 use Net::SSLeay 1.46;
@@ -2608,7 +2608,7 @@ sub new {
 		    my $hint = shift;
 		    my ($i,$p);
 		    if (ref($psk) eq 'HASH') {
-			$hint //= '';
+			$hint = '' if ! defined $hint;
 			$p = $psk->{$hint} or return IO::Socket::SSL->_internal_error(
 			    "no PSK for given hint '$hint'");
 			$i = $hint;
